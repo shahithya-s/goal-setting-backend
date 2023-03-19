@@ -1,4 +1,5 @@
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
@@ -20,6 +21,8 @@ app.use(cors({
 
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
+
+app.use(createProxyMiddleware('/app', { target: process.env.CLIENT_URL }));
 
 app.use(errorHandler);
 
