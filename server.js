@@ -22,7 +22,7 @@ app.use(cors({
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 
-app.use(createProxyMiddleware('/app', { target: process.env.CLIENT_URL }));
+app.use(createProxyMiddleware('/', { target: process.env.CLIENT_URL }));
 
 app.use(errorHandler);
 
